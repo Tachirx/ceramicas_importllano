@@ -7,22 +7,6 @@ interface RoomvoWidgetProps {
 }
 
 const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
-  const lanzarRoomvo = () => {
-    const sku = materialPiso.id.toUpperCase();
-    
-    // Intentar abrir el visualizador de Roomvo nativamente (sin salir de la página)
-    // @ts-ignore
-    if (window.roomvo && typeof window.roomvo.startVisualizer === 'function') {
-      // @ts-ignore
-      window.roomvo.startVisualizer(sku);
-    } else {
-      // Fallback: Si el script nativo falla o está bloqueado, abrir la URL compartida
-      const vendorId = 'eod5g26v';
-      const roomvoUrl = `https://www.roomvo.com/share/${vendorId}?sku=${sku}`;
-      window.open(roomvoUrl, '_blank');
-    }
-  };
-
   return (
     <div className="w-full h-full min-h-[500px] rounded-2xl bg-gradient-to-br from-zinc-900 to-black p-8 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden group">
       {/* Elementos decorativos */}
@@ -43,8 +27,8 @@ const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
         Utiliza el motor de Inteligencia Artificial de Roomvo líder en la industria para ver este producto en tu habitación con precisión milimétrica.
       </p>
 
+      {/* Botón nativo de Roomvo controlado por los atributos data-roomvo */}
       <button 
-        onClick={lanzarRoomvo}
         data-roomvo-action="startVisualizer"
         data-roomvo-sku={materialPiso.id.toUpperCase()}
         className="z-10 bg-importllano-rojo hover:bg-red-700 text-white font-bold py-4 px-10 rounded-xl flex items-center gap-3 transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(227,6,19,0.4)]"
