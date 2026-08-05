@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ExternalLink, Sparkles } from 'lucide-react';
 import { MaterialCeramico } from '../../tipos/materiales';
 
@@ -7,6 +7,21 @@ interface RoomvoWidgetProps {
 }
 
 const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
+  useEffect(() => {
+    // Si la URL contiene la redirección de Roomvo, forzamos manualmente su inicialización
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('roomvoStartVisualizer') === 'True') {
+      const checkRoomvo = setInterval(() => {
+        // @ts-ignore
+        if (window.roomvo && typeof window.roomvo.startVisualizer === 'function') {
+          clearInterval(checkRoomvo);
+          // @ts-ignore
+          window.roomvo.startVisualizer();
+        }
+      }, 500);
+      return () => clearInterval(checkRoomvo);
+    }
+  }, []);
   const lanzarRoomvo = () => {
     const vendorId = 'eod5g26v';
     const sku = materialPiso.id.toUpperCase();
