@@ -1,0 +1,46 @@
+﻿{
+  "escenas": [
+    {
+      "id": "sala_minimalista",
+      "nombre": "Sala Minimalista",
+      "url_imagen": "/escenas/sala_minimalista.png",
+      "zonas": [
+        {
+          "id": "piso",
+          "nombre": "Suelos",
+          "target_ia": "piso",
+          "coordenada_x_pct": 0.50,
+          "coordenada_y_pct": 0.85
+        },
+        {
+          "id": "pared_fondo",
+          "nombre": "Paredes",
+          "target_ia": "pared",
+          "coordenada_x_pct": 0.50,
+          "coordenada_y_pct": 0.30
+        }
+      ]
+    },
+    {
+      "id": "bano_moderno",
+      "nombre": "Baño Moderno",
+      "url_imagen": "/escenas/bano_moderno.png",
+      "zonas": [
+        {
+          "id": "piso",
+          "nombre": "Suelos",
+          "target_ia": "piso",
+          "coordenada_x_pct": 0.50,
+          "coordenada_y_pct": 0.90
+        },
+        {
+          "id": "pared_fondo",
+          "nombre": "Pared Principal",
+          "target_ia": "pared",
+          "coordenada_x_pct": 0.50,
+          "coordenada_y_pct": 0.20
+        }
+      ]
+    }
+  ]
+}
