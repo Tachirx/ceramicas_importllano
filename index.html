@@ -16,6 +16,9 @@
     <script src="https://www.roomvo.com/static/scripts/b2b/roomvo_bg.js" async></script>
   </head>
   <body class="bg-white text-black font-['Outfit',sans-serif] antialiased min-h-screen selection:bg-red-600 selection:text-white">
+    <!-- Botón oculto para Roomvo. Es vital que esté en el HTML puro para que roomvo_bg.js lo detecte al cargar.
+         Usaremos un <label> en React para hacerle clic nativamente y mantener event.isTrusted=true -->
+    <button id="roomvo-hidden-trigger" data-roomvo-action="startVisualizer" data-roomvo-sku="" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; z-index: -9999;" aria-hidden="true" tabindex="-1"></button>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
