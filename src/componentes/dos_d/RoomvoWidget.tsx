@@ -7,6 +7,22 @@ interface RoomvoWidgetProps {
 }
 
 const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
+  const lanzarRoomvo = () => {
+    const sku = materialPiso.id.toUpperCase();
+    
+    // 1. Intentar llamar a la API nativa si ya cargó
+    // @ts-ignore
+    if (window.roomvo && typeof window.roomvo.startVisualizer === 'function') {
+      // @ts-ignore
+      window.roomvo.startVisualizer({ productId: sku, sku: sku });
+    } else {
+      // 2. Fallback infalible: En React el botón se crea dinámicamente, por lo que el script
+      // de Roomvo puede no detectarlo. En su lugar, inyectamos los comandos en la URL
+      // para que el script abra el modal automáticamente (sin abrir pestaña nueva).
+      window.location.href = `/?roomvoStartVisualizer=True&sku=${sku}`;
+    }
+  };
+
   return (
     <div className="w-full h-full min-h-[500px] rounded-2xl bg-gradient-to-br from-zinc-900 to-black p-8 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden group">
       {/* Elementos decorativos */}
@@ -29,6 +45,7 @@ const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
 
       {/* Botón nativo de Roomvo controlado por los atributos data-roomvo */}
       <button 
+        onClick={lanzarRoomvo}
         data-roomvo-action="startVisualizer"
         data-roomvo-sku={materialPiso.id.toUpperCase()}
         className="z-10 bg-importllano-rojo hover:bg-red-700 text-white font-bold py-4 px-10 rounded-xl flex items-center gap-3 transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(227,6,19,0.4)]"
