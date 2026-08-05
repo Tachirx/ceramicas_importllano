@@ -10,10 +10,10 @@ const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
   const lanzarRoomvo = () => {
     const vendorId = 'eod5g26v';
     const sku = materialPiso.id.toUpperCase();
-    const roomvoUrl = `https://www.roomvo.com/share/${vendorId}?sku=${sku}`;
     
-    // Abrimos el enlace compartido oficial. Como la web en Vercel ya existe,
-    // Roomvo autorizará la sesión y redirigirá de vuelta a la página abriendo el visualizador.
+    // Abrimos directamente el visualizador completo hospedado en los servidores de Roomvo.
+    // Esto evita problemas de integración B2B con React y garantiza que siempre funcione.
+    const roomvoUrl = `https://www.roomvo.com/my/${vendorId}/product/${sku}`;
     window.open(roomvoUrl, '_blank');
   };
 

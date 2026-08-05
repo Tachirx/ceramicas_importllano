@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { CATALOGO_MATERIALES_MVP } from './datos/catalogo_materiales';
 import {
   DimensionesHabitacion,
@@ -19,39 +19,11 @@ export const App: React.FC = () => {
   // Estado global de la simulación
   const [imagenIA, setImagenIA] = useState<string>('/escenas/bano.jpg'); // Por defecto cargamos el baño
 
-  const [materialPiso, setMaterialPiso] = useState<MaterialCeramico>(() => {
-    // Si venimos de un enlace de Roomvo, intentamos restaurar el material elegido
-    const params = new URLSearchParams(window.location.search);
-    let sku = params.get('sku');
-    if (sku) {
-      // Roomvo a veces añade sufijos como _grid
-      sku = sku.replace('_grid', '');
-      const match = CATALOGO_MATERIALES_MVP.find(m => m.id.toUpperCase() === sku?.toUpperCase());
-      if (match) return match;
-    }
-    return CATALOGO_MATERIALES_MVP[0];
-  });
-  const [formatoPiso, setFormatoPiso] = useState<FormatoPalmeta>(() => materialPiso.formato_predeterminado);
+  const [materialPiso, setMaterialPiso] = useState<MaterialCeramico>(CATALOGO_MATERIALES_MVP[0]);
+  const [formatoPiso, setFormatoPiso] = useState<FormatoPalmeta>(CATALOGO_MATERIALES_MVP[0].formato_predeterminado);
 
   const [materialPared, setMaterialPared] = useState<MaterialCeramico>(CATALOGO_MATERIALES_MVP[1]);
   const [formatoPared, setFormatoPared] = useState<FormatoPalmeta>(CATALOGO_MATERIALES_MVP[1].formato_predeterminado);
-
-  // Vigía global de Roomvo (Para que funcione incluso si el componente widget no está renderizado temporalmente)
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('roomvoStartVisualizer') === 'True') {
-      const checkRoomvo = setInterval(() => {
-        // @ts-ignore
-        if (window.roomvo && typeof window.roomvo.startVisualizer === 'function') {
-          clearInterval(checkRoomvo);
-          // @ts-ignore
-          window.roomvo.startVisualizer();
-        }
-      }, 500);
-      return () => clearInterval(checkRoomvo);
-    }
-    return undefined;
-  }, []);
 
   const [dimensiones, setDimensiones] = useState<DimensionesHabitacion>({
     ancho: 3.0,
@@ -85,6 +57,14 @@ export const App: React.FC = () => {
     setFormatoPared(formato);
   };
 
+  // Determinar si debemos mostrar el widget de Roomvo basado en las marcas con licencia
+  const marcasRoomvo = ['Ceramicas Caribe', 'Itaca', 'Palo Rosa'];
+  const pisoRequiereRoomvo = marcasRoomvo.includes(materialPiso.marca);
+  const paredRequiereRoomvo = marcasRoomvo.includes(materialPared.marca);
+  const mostrarRoomvo = pisoRequiereRoomvo || paredRequiereRoomvo;
+  // Pasamos el material que originó la activación de Roomvo
+  const materialParaRoomvo = pisoRequiereRoomvo ? materialPiso : materialPared;
+
   return (
     <div className="min-h-screen bg-white text-black flex flex-col font-['Outfit',sans-serif] selection:bg-red-600 selection:text-white">
       {/* Encabezado Principal Importllano */}
@@ -94,8 +74,8 @@ export const App: React.FC = () => {
       <main className="flex-1 p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-[1750px] w-full mx-auto">
         {/* COLUMNA IZQUIERDA: Visualizador Inteligencia Artificial */}
         <section className="lg:col-span-7 xl:col-span-8 flex flex-col gap-5">
-          {materialPiso.marca === 'Ceramicas Caribe' ? (
-            <RoomvoWidget materialPiso={materialPiso} />
+          {mostrarRoomvo ? (
+            <RoomvoWidget materialPiso={materialParaRoomvo} />
           ) : (
             <VisualizadorIA 
               imagenOriginal={imagenIA}
