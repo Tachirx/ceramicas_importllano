@@ -21,6 +21,7 @@ const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
       }, 500);
       return () => clearInterval(checkRoomvo);
     }
+    return undefined;
   }, []);
   const lanzarRoomvo = () => {
     const vendorId = 'eod5g26v';
