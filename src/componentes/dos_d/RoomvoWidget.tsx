@@ -10,12 +10,22 @@ const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
   const lanzarRoomvo = () => {
     const sku = materialPiso.id.toUpperCase();
     // @ts-ignore
-    if (window.roomvo && typeof window.roomvo.startVisualizer === 'function') {
-      // Llamada directa a la API en un evento de usuario confiable (isTrusted=true)
-      // @ts-ignore
-      window.roomvo.startVisualizer({ sku: sku });
+    if (window.roomvo) {
+      try {
+        // @ts-ignore
+        if (typeof window.roomvo.startStandaloneVisualizer === 'function') {
+          // @ts-ignore
+          window.roomvo.startStandaloneVisualizer('', sku);
+        } else {
+          // @ts-ignore
+          window.roomvo.startVisualizer({ sku: sku });
+        }
+      } catch (e) {
+        console.error(e);
+        const vendorId = 'eod5g26v';
+        window.open(`https://www.roomvo.com/share/${vendorId}?sku=${sku}`, '_blank');
+      }
     } else {
-      // Fallback a enlace compartido si el script B2B falla por AdBlock o red
       const vendorId = 'eod5g26v';
       window.open(`https://www.roomvo.com/share/${vendorId}?sku=${sku}`, '_blank');
     }
