@@ -8,13 +8,15 @@ interface RoomvoWidgetProps {
 
 const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
   const lanzarRoomvo = () => {
-    const vendorId = 'eod5g26v';
     const sku = materialPiso.id.toUpperCase();
-    
-    // Abrimos directamente el visualizador completo hospedado en los servidores de Roomvo.
-    // Esto evita problemas de integración B2B con React y garantiza que siempre funcione.
-    const roomvoUrl = `https://www.roomvo.com/my/${vendorId}/product/${sku}`;
-    window.open(roomvoUrl, '_blank');
+    const hiddenBtn = document.getElementById('roomvo-hidden-trigger');
+    if (hiddenBtn) {
+      // Le pasamos el SKU dinámicamente al botón fantasma y fakes un click
+      hiddenBtn.setAttribute('data-roomvo-sku', sku);
+      hiddenBtn.click();
+    } else {
+      console.error("No se encontró el botón de Roomvo");
+    }
   };
 
   return (
