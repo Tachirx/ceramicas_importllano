@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { CATALOGO_MATERIALES_MVP } from './datos/catalogo_materiales';
 import {
   DimensionesHabitacion,
@@ -50,6 +50,7 @@ export const App: React.FC = () => {
       }, 500);
       return () => clearInterval(checkRoomvo);
     }
+    return undefined;
   }, []);
 
   const [dimensiones, setDimensiones] = useState<DimensionesHabitacion>({
