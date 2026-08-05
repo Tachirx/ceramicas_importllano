@@ -9,50 +9,49 @@ interface RoomvoWidgetProps {
 const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
   const lanzarRoomvo = () => {
     const sku = materialPiso.id.toUpperCase();
-    const hiddenBtn = document.getElementById('roomvo-hidden-trigger');
-    if (hiddenBtn) {
-      // Le pasamos el SKU dinámicamente al botón fantasma y fakes un click
-      hiddenBtn.setAttribute('data-roomvo-sku', sku);
-      hiddenBtn.click();
+    // @ts-ignore
+    if (window.roomvo && typeof window.roomvo.startVisualizer === 'function') {
+      // Llamada directa a la API en un evento de usuario confiable (isTrusted=true)
+      // @ts-ignore
+      window.roomvo.startVisualizer({ sku: sku });
     } else {
-      console.error("No se encontró el botón de Roomvo");
+      // Fallback a enlace compartido si el script B2B falla por AdBlock o red
+      const vendorId = 'eod5g26v';
+      window.open(`https://www.roomvo.com/share/${vendorId}?sku=${sku}`, '_blank');
     }
   };
 
   return (
-    <div className="w-full h-full min-h-[500px] rounded-2xl bg-gradient-to-br from-zinc-900 to-black p-8 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden group">
+    <div className="bg-black/90 rounded-2xl p-6 lg:p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group min-h-[400px] border border-red-900/30">
       {/* Elementos decorativos */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none mix-blend-overlay"></div>
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-importllano-rojo rounded-full blur-[120px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
-      
-      {/* Logo/Badge Roomvo */}
-      <div className="z-10 mb-8 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-full border border-white/10 flex items-center gap-3">
-        <Sparkles className="w-5 h-5 text-importllano-rojo" />
-        <span className="text-white font-medium tracking-wide uppercase text-sm">Powered by Roomvo</span>
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 via-red-500 to-red-600 opacity-50" />
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 flex items-center gap-2 text-white/40 text-xs font-semibold tracking-widest uppercase mb-4">
+        <Sparkles className="w-4 h-4 text-red-500" />
+        <span>Powered by Roomvo</span>
       </div>
 
-      <h2 className="z-10 text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-        Visualiza <span className="text-transparent bg-clip-text bg-gradient-to-r from-importllano-rojo to-orange-500">{materialPiso.nombre}</span> <br/>en tu propia casa
-      </h2>
-      
-      <p className="z-10 text-gray-400 max-w-lg mb-10 text-lg">
-        Utiliza el motor de Inteligencia Artificial de Roomvo líder en la industria para ver este producto en tu habitación con precisión milimétrica.
-      </p>
+      {/* Contenido Principal */}
+      <div className="relative z-10 mt-8 max-w-lg">
+        <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+          Visualiza <span className="text-red-500">{materialPiso.nombre}</span> en tu propia casa
+        </h3>
+        
+        <p className="text-gray-400 mb-8 text-sm lg:text-base max-w-md mx-auto">
+          Utiliza el motor de Inteligencia Artificial de Roomvo líder en la industria para ver este producto en tu habitación con precisión milimétrica.
+        </p>
 
-      {/* Botón nativo de Roomvo controlado por los atributos data-roomvo */}
-      <button 
-        onClick={lanzarRoomvo}
-        data-roomvo-action="startVisualizer"
-        data-roomvo-sku={materialPiso.id.toUpperCase()}
-        className="z-10 bg-importllano-rojo hover:bg-red-700 text-white font-bold py-4 px-10 rounded-xl flex items-center gap-3 transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(227,6,19,0.4)]"
-      >
-        <ExternalLink className="w-6 h-6" />
-        Abrir Visualizador Inteligente
-      </button>
+        {/* Botón Principal (Integración Roomvo) */}
+        <button
+          onClick={lanzarRoomvo}
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl w-full sm:w-auto shadow-lg shadow-red-900/20 flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-105"
+        >
+          <ExternalLink className="w-5 h-5" />
+          Abrir Visualizador Inteligente
+        </button>
 
-      {/* Nota legal para el prototipo */}
-      <div className="absolute bottom-6 text-xs text-gray-600 uppercase tracking-widest z-10">
-        Requiere suscripción B2B activa con fabricantes (ITACA, Caribe, Palo Rosa)
+        <p className="mt-6 text-xs text-white/30 tracking-widest uppercase">
+          Requiere suscripción B2B activa con fabricantes (Itaca, Caribe, Palo Rosa)
+        </p>
       </div>
     </div>
   );
