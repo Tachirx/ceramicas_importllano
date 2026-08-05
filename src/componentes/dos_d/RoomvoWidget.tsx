@@ -8,19 +8,13 @@ interface RoomvoWidgetProps {
 
 const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
   const lanzarRoomvo = () => {
+    const vendorId = 'eod5g26v';
     const sku = materialPiso.id.toUpperCase();
+    const roomvoUrl = `https://www.roomvo.com/share/${vendorId}?sku=${sku}`;
     
-    // 1. Intentar llamar a la API nativa si ya cargó
-    // @ts-ignore
-    if (window.roomvo && typeof window.roomvo.startVisualizer === 'function') {
-      // @ts-ignore
-      window.roomvo.startVisualizer({ productId: sku, sku: sku });
-    } else {
-      // 2. Fallback infalible: En React el botón se crea dinámicamente, por lo que el script
-      // de Roomvo puede no detectarlo. En su lugar, inyectamos los comandos en la URL
-      // para que el script abra el modal automáticamente (sin abrir pestaña nueva).
-      window.location.href = `/?roomvoStartVisualizer=True&sku=${sku}`;
-    }
+    // Abrimos el enlace compartido oficial. Como la web en Vercel ya existe,
+    // Roomvo autorizará la sesión y redirigirá de vuelta a la página abriendo el visualizador.
+    window.open(roomvoUrl, '_blank');
   };
 
   return (
