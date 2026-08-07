@@ -24,858 +24,1806 @@ export const FORMATO_30_30: FormatoPalmeta = {
   etiqueta: '0.30m x 0.30m'
 };
 
+export const FORMATO_48_36: FormatoPalmeta = {
+  ancho_metros: 0.48,
+  largo_metros: 0.36,
+  etiqueta: '48cm x 36cm'
+};
+
+export const FORMATO_43_43: FormatoPalmeta = {
+  ancho_metros: 0.43,
+  largo_metros: 0.43,
+  etiqueta: '43cm x 43cm'
+};
+
 export const CATALOGO_MATERIALES_MVP: MaterialCeramico[] = [
+
+
   {
-    id: 'porcelanato-marquina-black',
-    nombre: 'Porcelanato Marquina Black',
-    marca: 'Importllano',
+
+    id: 'sal-soluble-plain-ivory',
+
+    nombre: 'Sal soluble plain ivory',
+
+    marca: 'ITACA',
+
     categoria: 'piso',
-    acabado: 'pulido',
-    formato_predeterminado: FORMATO_120_60,
-    formatos_disponibles: [FORMATO_120_60, FORMATO_60_60],
-    propiedades_pbr: {
-      rugosidad: 0.05,
-      capa_brillo: 1.0,
-      metalicidad: 0.1,
-      color_hex: '#111111',
-      mapa_normal_intensidad: 0.8
-    },
-    rendimiento_caja_m2: 1.44,
-    unidades_por_caja: 2,
-    precio_metro_cuadrado: 22.50,
-    descripcion: 'Porcelanato de alto brillo con efecto mármol negro azabache y vetas blancas finas. Ideal para pisos de lujo.',
-    patron_textura: 'marquina',
-    url_textura: '/texturas/marquina.jpg'
-  },
-  {
-    id: 'ceramica-karisma-azul',
-    nombre: 'Cerámica Karisma Azul',
-    marca: 'Importllano',
-    categoria: 'pared',
-    acabado: 'brillante',
-    formato_predeterminado: FORMATO_60_30,
-    formatos_disponibles: [FORMATO_60_30, FORMATO_60_60],
-    propiedades_pbr: {
-      rugosidad: 0.15,
-      capa_brillo: 0.8,
-      metalicidad: 0.05,
-      color_hex: '#1e3a8a',
-      mapa_normal_intensidad: 0.3
-    },
-    rendimiento_caja_m2: 1.80,
-    unidades_por_caja: 10,
-    precio_metro_cuadrado: 14.80,
-    descripcion: 'Cerámica esmaltada azul marino con acabado semibrillante. Aporta frescura y distinción a paredes de baño y salpicaderos de cocina.',
-    patron_textura: 'karisma',
-    url_textura: '/texturas/karisma.jpg'
-  },
-  {
-    id: 'porcelanato-carrara-white',
-    nombre: 'Porcelanato Carrara White',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'pulido',
-    formato_predeterminado: FORMATO_120_60,
-    formatos_disponibles: [FORMATO_120_60, FORMATO_60_60],
-    propiedades_pbr: {
-      rugosidad: 0.08,
-      capa_brillo: 0.9,
-      metalicidad: 0.05,
-      color_hex: '#F8F9FA',
-      mapa_normal_intensidad: 0.4
-    },
-    rendimiento_caja_m2: 1.44,
-    unidades_por_caja: 2,
-    precio_metro_cuadrado: 24.00,
-    descripcion: 'Porcelanato rectificado de mármol Carrara blanco con suave veteado gris. Otorga máxima amplitud y luminosidad.',
-    patron_textura: 'carrara',
-    url_textura: '/texturas/carrara.jpg'
-  },
-  {
-    id: 'ceramica-gris-neutro',
-    nombre: 'Cerámica Gris Neutro',
-    marca: 'Importllano',
-    categoria: 'pared',
-    acabado: 'mate',
+
+    acabado: 'pulido', // Asignado por defecto
+
     formato_predeterminado: FORMATO_60_60,
-    formatos_disponibles: [FORMATO_60_60, FORMATO_30_30],
-    propiedades_pbr: {
-      rugosidad: 0.60,
-      capa_brillo: 0.0,
-      metalicidad: 0.0,
-      color_hex: '#4A5568',
-      mapa_normal_intensidad: 0.2
-    },
+
+    url_textura: '/texturas/sal-soluble-plain-ivory.jpg',
+
+    precio_metro_cuadrado: 23.90,
+
     rendimiento_caja_m2: 1.44,
+
     unidades_por_caja: 4,
-    precio_metro_cuadrado: 12.50,
-    descripcion: 'Cerámica mate con apariencia estilo micro-cemento. Excelente versatilidad para estilos contemporáneos e industriales.',
-    patron_textura: 'gris_neutro',
-    url_textura: '/texturas/gris.jpg'
-  },
-  {
-    id: 'mbd-v125',
-    nombre: 'Blanco Real (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/blanco-real.jpg',
-    precio_metro_cuadrado: 12.50,
+
     propiedades_pbr: {
-      color_hex: '#E8E6E1',
-      rugosidad: 0.8,
+
+      color_hex: '#F5F5DC',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'msd-943',
-    nombre: 'Volcán Verde (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
+
+    id: 'sal-soluble-siena',
+
+    nombre: 'Sal soluble siena',
+
+    marca: 'ITACA',
+
     categoria: 'piso',
-    acabado: 'mate',
+
+    acabado: 'pulido', // Asignado por defecto
+
     formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/volcan-verde.jpg',
-    precio_metro_cuadrado: 14.00,
+
+    url_textura: '/texturas/sal-soluble-siena.jpg',
+
+    precio_metro_cuadrado: 23.90,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
     propiedades_pbr: {
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'florim-gold',
+
+    nombre: 'Florim gold',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/florim-gold.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#DAA520',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'mexima-onyx',
+
+    nombre: 'Mexima onyx',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/mexima-onyx.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'hexa-onyx-gold',
+
+    nombre: 'Hexa onyx gold',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/hexa-onyx-gold.jpg',
+
+    precio_metro_cuadrado: 37.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#DAA520',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'xtreme-negro',
+
+    nombre: 'Xtreme negro',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/xtreme-negro.jpg',
+
+    precio_metro_cuadrado: 37.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#111111',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'saint-laurent',
+
+    nombre: 'Saint laurent',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/saint-laurent.jpg',
+
+    precio_metro_cuadrado: 37.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'nero-marquina',
+
+    nombre: 'Nero marquina',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/nero-marquina.jpg',
+
+    precio_metro_cuadrado: 37.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#111111',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'hera-dune',
+
+    nombre: 'Hera dune',
+
+    marca: 'Palo rosa',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/hera-dune.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'belfast-gris',
+
+    nombre: 'Belfast gris',
+
+    marca: 'Palo rosa',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/belfast-gris.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#808080',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'block-blanco',
+
+    nombre: 'Block blanco',
+
+    marca: 'Palo rosa',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/block-blanco.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#F5F5F5',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'block-beige',
+
+    nombre: 'Block beige',
+
+    marca: 'Palo rosa',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_60_60,
+
+    url_textura: '/texturas/block-beige.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 4,
+
+    propiedades_pbr: {
+
+      color_hex: '#F5F5DC',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'black-onyx-beauty',
+
+    nombre: 'Black onyx beauty',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/black-onyx-beauty.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#111111',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'marquina-gold',
+
+    nombre: 'Marquina gold',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/marquina-gold.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#DAA520',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'eagele-nero',
+
+    nombre: 'Eagele nero',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/eagele-nero.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#111111',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'marquina-black',
+
+    nombre: 'Marquina black',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/marquina-black.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#111111',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'negro-marquina-xl',
+
+    nombre: 'Negro marquina XL',
+
+    marca: 'Palo rosa',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/negro-marquina-xl.jpg',
+
+    precio_metro_cuadrado: 49.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#111111',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'mallorca-gris',
+
+    nombre: 'Mallorca gris',
+
+    marca: 'Carabobo',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/mallorca-gris.jpg',
+
+    precio_metro_cuadrado: 23.00,
+
+    rendimiento_caja_m2: 1.42,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#808080',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'body-basald-stone-white',
+
+    nombre: 'Body basald stone white',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/body-basald-stone-white.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#F5F5F5',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'ghr-body-archie-bianco',
+
+    nombre: 'GHR Body archie bianco',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/ghr-body-archie-bianco.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#F5F5F5',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'calacatta-green-endles',
+
+    nombre: 'Calacatta green endles',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/calacatta-green-endles.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
       color_hex: '#A3A69C',
-      rugosidad: 0.9,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-d102',
-    nombre: 'Capri Beige (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'brillante',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/capri-beige.jpg',
-    precio_metro_cuadrado: 11.20,
-    propiedades_pbr: {
-      color_hex: '#D9C8B4',
-      rugosidad: 0.2,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'msd-v02',
-    nombre: 'NOGAL NATURAL (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
+
+    id: 'verona-beige',
+
+    nombre: 'Verona beige',
+
+    marca: 'Palo rosa',
+
     categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/msd-v02.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/verona-beige.jpg',
+
+    precio_metro_cuadrado: 35.00,
+
+    rendimiento_caja_m2: 2.16,
+
+    unidades_por_caja: 3,
+
     propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d104',
-    nombre: 'KARISMA OSCURO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-d104.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-v124',
-    nombre: 'LYS HORSE (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-v124.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
+
       color_hex: '#F5F5DC',
-      rugosidad: 0.8,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v113',
-    nombre: 'CUARZO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
+
+    id: 'kachori-gold',
+
+    nombre: 'Kachori gold',
+
+    marca: 'ITACA',
+
     categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-v113.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/kachori-gold.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
     propiedades_pbr: {
-      color_hex: '#FFD700',
-      rugosidad: 0.8,
+
+      color_hex: '#DAA520',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v115',
-    nombre: 'MARBLE BIANCO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v115.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    id: 'smoke-gold',
+
+    nombre: 'Smoke gold',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/smoke-gold.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
     propiedades_pbr: {
-      color_hex: '#FFFFFF',
-      rugosidad: 0.8,
+
+      color_hex: '#DAA520',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'msd-d107',
-    nombre: 'BARROCO GRIS (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/msd-d107.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    id: 'siena-gold',
+
+    nombre: 'Siena gold',
+
+    marca: 'Palo rosa',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/siena-gold.jpg',
+
+    precio_metro_cuadrado: 35.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
     propiedades_pbr: {
+
+      color_hex: '#DAA520',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'macline-art-green',
+
+    nombre: 'Macline art green',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/macline-art-green.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#A3A69C',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'loira-olivo',
+
+    nombre: 'Loira olivo',
+
+    marca: 'Domosa',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/loira-olivo.jpg',
+
+    precio_metro_cuadrado: 35.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#A3A69C',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'falconer-aqua',
+
+    nombre: 'Falconer aqua',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/falconer-aqua.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#A3A69C',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'taica-art-aqua',
+
+    nombre: 'Taica art aqua',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/taica-art-aqua.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#A3A69C',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'smoke-aqua',
+
+    nombre: 'Smoke aqua',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/smoke-aqua.jpg',
+
+    precio_metro_cuadrado: 39.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#A3A69C',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'torso-bianco',
+
+    nombre: 'Torso bianco',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/torso-bianco.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#F5F5F5',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'statuario-sipani',
+
+    nombre: 'Statuario sipani',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/statuario-sipani.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'carrara-grey',
+
+    nombre: 'Carrara grey',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/carrara-grey.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
+    propiedades_pbr: {
+
       color_hex: '#808080',
-      rugosidad: 0.8,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-d78',
-    nombre: 'CRONOS (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
+
+    id: 'medici-gris',
+
+    nombre: 'Medici Gris',
+
+    marca: 'Palo rosa',
+
     categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-d78.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/medici-gris.jpg',
+
+    precio_metro_cuadrado: 35.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
     propiedades_pbr: {
-      color_hex: '#000000',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d101',
-    nombre: 'CHORONI (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-d101.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'msg-634',
-    nombre: 'GOTEADO ARENA (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/msg-634.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#F5F5DC',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'ml-002',
-    nombre: 'AZABACHE (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/ml-002.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#000000',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'msd-v61',
-    nombre: 'CARIBE (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/msd-v61.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#F5F5DC',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d24',
-    nombre: 'MARMOL CARRARA (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-d24.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#FFFFFF',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d25',
-    nombre: 'MARMOL TRAVERTINO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-d25.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#F5F5DC',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'msg-v36',
-    nombre: 'SAN MARTIN OSCURO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/msg-v36.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#000000',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-v68',
-    nombre: 'MARMOL CARRARA GRIS (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-v68.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
+
       color_hex: '#808080',
-      rugosidad: 0.8,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'ml-004',
-    nombre: 'BLANCO ALPES (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/ml-004.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    id: 'plain-white',
+
+    nombre: 'Plain white',
+
+    marca: 'ITACA',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_120_60,
+
+    url_textura: '/texturas/plain-white.jpg',
+
+    precio_metro_cuadrado: 29.00,
+
+    rendimiento_caja_m2: 1.44,
+
+    unidades_por_caja: 2,
+
     propiedades_pbr: {
-      color_hex: '#FFFFFF',
-      rugosidad: 0.8,
+
+      color_hex: '#F5F5F5',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v100',
-    nombre: 'BRECCIA (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v100.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    id: 'genova-gris',
+
+    nombre: 'Genova gris',
+
+    marca: 'Balgres',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_48_36,
+
+    url_textura: '/texturas/genova-gris.jpg',
+
+    precio_metro_cuadrado: 21.11,
+
+    rendimiento_caja_m2: 2.07,
+
+    unidades_por_caja: 12,
+
     propiedades_pbr: {
+
       color_hex: '#808080',
-      rugosidad: 0.8,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v17',
-    nombre: 'CARRARA MARQUES (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v17.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    id: 'genova-rosa',
+
+    nombre: 'Genova rosa',
+
+    marca: 'Balgres',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_48_36,
+
+    url_textura: '/texturas/genova-rosa.jpg',
+
+    precio_metro_cuadrado: 19.00,
+
+    rendimiento_caja_m2: 2.07,
+
+    unidades_por_caja: 12,
+
     propiedades_pbr: {
-      color_hex: '#FFFFFF',
-      rugosidad: 0.8,
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v10',
-    nombre: 'PRIMAVERA AZUL (Cerámicas Caribe)',
+
+    id: 'marble-blue',
+
+    nombre: 'Marble blue',
+
     marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v10.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/marble-blue.jpg',
+
+    precio_metro_cuadrado: 21.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
     propiedades_pbr: {
+
       color_hex: '#0000FF',
-      rugosidad: 0.8,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v83',
-    nombre: 'MARMOL CARIBE (Cerámicas Caribe)',
+
+    id: 'carrara-marquez',
+
+    nombre: 'Carrara marquez',
+
     marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v83.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/carrara-marquez.jpg',
+
+    precio_metro_cuadrado: 23.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
     propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'ml-v04',
-    nombre: 'AZABACHE PARED (Cerámicas Caribe)',
+
+    id: 'calacatta',
+
+    nombre: 'Calacatta',
+
     marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/ml-v04.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/calacatta.jpg',
+
+    precio_metro_cuadrado: 23.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
     propiedades_pbr: {
-      color_hex: '#000000',
-      rugosidad: 0.8,
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v20',
-    nombre: 'CARRARA OCRE (Cerámicas Caribe)',
+
+    id: 'anela',
+
+    nombre: 'Anela',
+
     marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v20.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/anela.jpg',
+
+    precio_metro_cuadrado: 23.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
     propiedades_pbr: {
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'lys-horse',
+
+    nombre: 'Lys horse',
+
+    marca: 'Ceramicas Caribe',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/lys-horse.jpg',
+
+    precio_metro_cuadrado: 21.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
+    propiedades_pbr: {
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'marmol-brandt-beige',
+
+    nombre: 'Marmol brandt beige',
+
+    marca: 'Ceramicas Caribe',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/marmol-brandt-beige.jpg',
+
+    precio_metro_cuadrado: 23.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
+    propiedades_pbr: {
+
       color_hex: '#F5F5DC',
-      rugosidad: 0.8,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v105',
-    nombre: 'VENANZO (Cerámicas Caribe)',
+
+    id: 'madera-teca',
+
+    nombre: 'Madera teca (Calidad 2da)',
+
     marca: 'Ceramicas Caribe',
+
     categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-v105.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/madera-teca.jpg',
+
+    precio_metro_cuadrado: 16.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
     propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
+
+      color_hex: '#8B5A2B',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v110',
-    nombre: 'CALACATTA (Cerámicas Caribe)',
+
+    id: 'patagonia',
+
+    nombre: 'Patagonia',
+
     marca: 'Ceramicas Caribe',
+
     categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-v110.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/patagonia.jpg',
+
+    precio_metro_cuadrado: 23.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
     propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
+
+      color_hex: '#DDDDDD',
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
+
   {
-    id: 'mbd-v101',
-    nombre: 'ANELA (Cerámicas Caribe)',
+
+    id: 'choroni-miel',
+
+    nombre: 'Choroni miel',
+
     marca: 'Ceramicas Caribe',
+
     categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-v101.jpg',
-    precio_metro_cuadrado: 15.00,
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/choroni-miel.jpg',
+
+    precio_metro_cuadrado: 16.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
     propiedades_pbr: {
+
+      color_hex: '#8B5A2B',
+
+      rugosidad: 0.1,
+
+      metalicidad: 0.0,
+
+      capa_brillo: 1.0,
+
+      mapa_normal_intensidad: 0.0,
+
+    },
+
+  },
+
+  {
+
+    id: 'atenas-beige',
+
+    nombre: 'Atenas beige',
+
+    marca: 'Ceramicas Caribe',
+
+    categoria: 'piso',
+
+    acabado: 'pulido', // Asignado por defecto
+
+    formato_predeterminado: FORMATO_43_43,
+
+    url_textura: '/texturas/atenas-beige.jpg',
+
+    precio_metro_cuadrado: 21.00,
+
+    rendimiento_caja_m2: 1.85,
+
+    unidades_por_caja: 10,
+
+    propiedades_pbr: {
+
       color_hex: '#F5F5DC',
-      rugosidad: 0.8,
+
+      rugosidad: 0.1,
+
       metalicidad: 0.0,
+
       capa_brillo: 1.0,
+
       mapa_normal_intensidad: 0.0,
+
     },
+
   },
-  {
-    id: 'mbd-802',
-    nombre: 'CARRARA OCRE 2 (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-802.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#F5F5DC',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mr-002',
-    nombre: 'RÚSTICO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mr-002.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'msd-v100',
-    nombre: 'MARKO CONCRETO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/msd-v100.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#F5F5DC',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-v61',
-    nombre: 'PRATO ROSSO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v61.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#FFC0CB',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-v75',
-    nombre: 'COLONIAL COTTO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v75.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-v14',
-    nombre: 'MONACO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-v14.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d106',
-    nombre: 'BABILONIA GRIS (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-d106.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'msd-d08',
-    nombre: 'NOGAL NATURAL PARED (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/msd-d08.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'ml-d08',
-    nombre: 'PLANICIE GRIS (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/ml-d08.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d98',
-    nombre: 'CHORONI ARENA (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-d98.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'ml-d10',
-    nombre: 'CUBO NIEVE (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/ml-d10.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#FFFFFF',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d02',
-    nombre: 'CORCEL NEGRO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-d02.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#000000',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-v78',
-    nombre: 'CHORONI MIEL (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mbd-v78.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#F5F5DC',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mr-d02',
-    nombre: 'CAICO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/mr-d02.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d21',
-    nombre: 'MADERA FRESNO (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-d21.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'mbd-d46',
-    nombre: 'MADERA TECA GRIS (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'pared',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_30,
-    url_textura: '/texturas/mbd-d46.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#808080',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
-  {
-    id: 'msd-v03',
-    nombre: 'MURALLA BROWN (Cerámicas Caribe)',
-    marca: 'Ceramicas Caribe',
-    categoria: 'piso',
-    acabado: 'mate',
-    formato_predeterminado: FORMATO_60_60,
-    url_textura: '/texturas/msd-v03.jpg',
-    precio_metro_cuadrado: 15.00,
-    propiedades_pbr: {
-      color_hex: '#8B5A2B',
-      rugosidad: 0.8,
-      metalicidad: 0.0,
-      capa_brillo: 1.0,
-      mapa_normal_intensidad: 0.0,
-    },
-  },
+
+
 ];
