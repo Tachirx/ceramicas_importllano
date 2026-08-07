@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { CATALOGO_MATERIALES_MVP } from '../../datos/catalogo_materiales';
 import { FormatoPalmeta, MaterialCeramico, TipoCategoriaMaterial } from '../../tipos/materiales';
 import { Check, Grid, Sparkles, Tag } from 'lucide-react';
 
 interface PropiedadesPanelCatalogo {
+  catalogo_completo: MaterialCeramico[];
   material_piso_activo: MaterialCeramico;
   formato_piso_activo: FormatoPalmeta;
   material_pared_activo: MaterialCeramico;
@@ -13,6 +13,7 @@ interface PropiedadesPanelCatalogo {
 }
 
 export const PanelCatalogo: React.FC<PropiedadesPanelCatalogo> = ({
+  catalogo_completo,
   material_piso_activo,
   formato_piso_activo,
   material_pared_activo,
@@ -22,8 +23,8 @@ export const PanelCatalogo: React.FC<PropiedadesPanelCatalogo> = ({
 }) => {
   const [categoriaPestana, setCategoriaPestana] = useState<TipoCategoriaMaterial>('piso');
 
-  const materialesFiltrados = CATALOGO_MATERIALES_MVP.filter(
-    material => material.categoria === categoriaPestana || material.categoria === 'piso'
+  const materialesFiltrados = catalogo_completo.filter(
+    material => material.categoria === categoriaPestana || material.categoria === 'piso' // fallback
   );
 
   return (
