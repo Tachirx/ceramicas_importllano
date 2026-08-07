@@ -9,9 +9,11 @@ import {
 import { calcularCotizacionCompleta } from './utilidades/calculador_cotizacion';
 import { NavegacionEncabezado } from './componentes/interfaz/NavegacionEncabezado';
 import RoomvoWidget from './componentes/dos_d/RoomvoWidget';
-import { VisualizadorIA } from './componentes/dos_d/VisualizadorIA';
+import { VisualizadorPlantillas } from './componentes/dos_d/VisualizadorPlantillas';
 import { PanelCatalogo } from './componentes/interfaz/PanelCatalogo';
 import { PanelConfiguracionHabitacion } from './componentes/interfaz/PanelConfiguracionHabitacion';
+import { PLANTILLAS_BASE } from './datos/plantillas_base';
+import { PlantillaHabitacion } from './tipos/plantillas';
 import { PanelCotizacion } from './componentes/interfaz/PanelCotizacion';
 import { ModalResumenExportacion } from './componentes/interfaz/ModalResumenExportacion';
 import { Loader2 } from 'lucide-react';
@@ -20,7 +22,7 @@ export const App: React.FC = () => {
   const { catalogo, cargando, error } = useCatalogo();
 
   // Estado global de la simulación
-  const [imagenIA, setImagenIA] = useState<string>('/escenas/bano.jpg');
+  const [plantillaActiva, setPlantillaActiva] = useState<PlantillaHabitacion>(PLANTILLAS_BASE[0]);
 
   const [materialPiso, setMaterialPiso] = useState<MaterialCeramico | null>(null);
   const [formatoPiso, setFormatoPiso] = useState<FormatoPalmeta | null>(null);
@@ -127,13 +129,12 @@ export const App: React.FC = () => {
           {mostrarRoomvo ? (
             <RoomvoWidget materialPiso={materialParaRoomvo} />
           ) : (
-            <VisualizadorIA 
-              imagenOriginal={imagenIA}
+            <VisualizadorPlantillas 
+              plantillaActiva={plantillaActiva}
               materialPiso={materialPiso}
               formatoPiso={formatoPiso}
               materialPared={materialPared}
               formatoPared={formatoPared}
-              dimensiones={dimensiones}
             />
           )}
           <PanelCotizacion
@@ -155,7 +156,9 @@ export const App: React.FC = () => {
             alCambiarDimensiones={setDimensiones}
             alCambiarTipoEspacio={setTipoEspacio}
             alCambiarMerma={setPorcentajeMerma}
-            alSubirFoto={(url) => setImagenIA(url)}
+            plantillaActiva={plantillaActiva}
+            plantillasDisponibles={PLANTILLAS_BASE}
+            alSeleccionarPlantilla={setPlantillaActiva}
           />
 
           <PanelCatalogo

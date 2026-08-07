@@ -2,6 +2,8 @@ import React from 'react';
 import { DimensionesHabitacion, TipoEspacio } from '../../tipos/materiales';
 import { Percent, Sliders, ImagePlus, ImageIcon } from 'lucide-react';
 
+import { PlantillaHabitacion } from '../../tipos/plantillas';
+
 interface PropiedadesPanelConfiguracionHabitacion {
   dimensiones: DimensionesHabitacion;
   tipo_espacio: TipoEspacio;
@@ -9,7 +11,9 @@ interface PropiedadesPanelConfiguracionHabitacion {
   alCambiarDimensiones: (nuevasDimensiones: DimensionesHabitacion) => void;
   alCambiarTipoEspacio: (nuevoEspacio: TipoEspacio) => void;
   alCambiarMerma: (nuevaMerma: number) => void;
-  alSubirFoto?: (urlImagen: string) => void;
+  alSeleccionarPlantilla: (plantilla: PlantillaHabitacion) => void;
+  plantillaActiva: PlantillaHabitacion;
+  plantillasDisponibles: PlantillaHabitacion[];
 }
 
 export const PanelConfiguracionHabitacion: React.FC<PropiedadesPanelConfiguracionHabitacion> = ({
@@ -19,38 +23,40 @@ export const PanelConfiguracionHabitacion: React.FC<PropiedadesPanelConfiguracio
   alCambiarDimensiones,
   alCambiarTipoEspacio,
   alCambiarMerma,
-  alSubirFoto
+  alSeleccionarPlantilla,
+  plantillaActiva,
+  plantillasDisponibles
 }) => {
-  const manejarSubidaArchivo = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file && alSubirFoto) {
-      const url = URL.createObjectURL(file);
-      alSubirFoto(url);
-    }
-  };
-
   return (
     <div className="bg-[#050505] rounded-2xl p-5 border-2 border-[#E51E25] flex flex-col gap-4 shadow-2xl">
       
-      {/* Botón Principal: Subir Foto (IA) */}
-      <div className="flex flex-col gap-2 border-b border-zinc-800 pb-4">
+      {/* Botón Principal: Galería de Plantillas */}
+      <div className="flex flex-col gap-3 border-b border-zinc-800 pb-5">
         <label className="text-xs font-semibold text-white flex items-center gap-1.5">
-          <ImagePlus className="w-4 h-4 text-[#E51E25]" /> Segmentación por Inteligencia Artificial
+          <ImagePlus className="w-4 h-4 text-[#E51E25]" /> Ambientes de Prueba
         </label>
         
-        <label className="cursor-pointer group">
-          <div className="bg-zinc-900 border border-zinc-700 hover:border-[#E51E25] rounded-xl p-3 flex items-center justify-center gap-2 transition-colors">
-            <ImagePlus className="w-5 h-5 text-zinc-400 group-hover:text-[#E51E25]" />
-            <span className="text-sm font-bold text-zinc-300 group-hover:text-white">Subir Foto de Habitación</span>
-          </div>
-          <input type="file" accept="image/*" className="hidden" onChange={manejarSubidaArchivo} />
-        </label>
-
-        <div className="flex items-center gap-2 mt-1">
-          <span className="text-[10px] text-zinc-500 uppercase font-bold">Prueba rápida:</span>
-          <button onClick={() => alSubirFoto?.('/escenas/bano.jpg')} className="text-[11px] text-zinc-400 hover:text-white underline">Baño</button>
-          <button onClick={() => alSubirFoto?.('/escenas/cocina.jpg')} className="text-[11px] text-zinc-400 hover:text-white underline">Cocina</button>
-          <button onClick={() => alSubirFoto?.('/escenas/sala.jpg')} className="text-[11px] text-zinc-400 hover:text-white underline">Sala</button>
+        <div className="grid grid-cols-3 gap-2">
+          {plantillasDisponibles.map(plantilla => (
+            <button
+              key={plantilla.id}
+              onClick={() => alSeleccionarPlantilla(plantilla)}
+              className={`relative aspect-square rounded-xl overflow-hidden group border-2 transition-all duration-300 ${
+                plantillaActiva.id === plantilla.id 
+                  ? 'border-[#E51E25] ring-2 ring-[#E51E25]/30 scale-105 z-10' 
+                  : 'border-zinc-800 hover:border-zinc-500 opacity-60 hover:opacity-100'
+              }`}
+            >
+              <img 
+                src={plantilla.url_miniatura} 
+                alt={plantilla.nombre}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className={`absolute inset-0 flex items-end p-2 transition-opacity ${plantillaActiva.id === plantilla.id ? 'bg-gradient-to-t from-[#E51E25]/80' : 'bg-gradient-to-t from-black/80'}`}>
+                <span className="text-[10px] font-bold text-white leading-tight">{plantilla.nombre}</span>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
