@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ExternalLink, Sparkles } from 'lucide-react';
 import { MaterialCeramico } from '../../tipos/materiales';
 
@@ -9,13 +9,17 @@ interface RoomvoWidgetProps {
 const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
   const sku = materialPiso.id.toUpperCase();
 
-  // Mantenemos sincronizado el botón oculto en el HTML base con el SKU actual
-  useEffect(() => {
-    const hiddenBtn = document.getElementById('roomvo-hidden-trigger');
-    if (hiddenBtn) {
-      hiddenBtn.setAttribute('data-roomvo-sku', sku);
+  const lanzarRoomvo = () => {
+    // Si es un producto de Cerámicas Caribe, usamos su visualizador oficial directo
+    // Esto garantiza que siempre funcione sin problemas de integración B2B en Vercel
+    if (materialPiso.nombre.includes("Caribe")) {
+      window.open(`https://www.ceramicascaribe.com/roomvo/?roomvoStartVisualizer=true&sku=${sku}`, '_blank');
+    } else {
+      // Para otros fabricantes, usamos el enlace de distribuidor de Importllano
+      const vendorId = 'eod5g26v';
+      window.open(`https://www.roomvo.com/share/${vendorId}?sku=${sku}`, '_blank');
     }
-  }, [sku]);
+  };
 
   return (
     <div className="bg-black/90 rounded-2xl p-6 lg:p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group min-h-[400px] border border-red-900/30">
@@ -36,15 +40,14 @@ const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
           Utiliza el motor de Inteligencia Artificial de Roomvo líder en la industria para ver este producto en tu habitación con precisión milimétrica.
         </p>
 
-        {/* Usamos un <label> que redirige el clic nativo y confiable (isTrusted=true) 
-            al botón oculto en el index.html al que roomvo_bg.js se amarró al inicio */}
-        <label
-          htmlFor="roomvo-hidden-trigger"
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl w-full sm:w-auto shadow-lg shadow-red-900/20 flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-105 cursor-pointer inline-flex"
+        {/* Botón Principal */}
+        <button
+          onClick={lanzarRoomvo}
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl w-full sm:w-auto shadow-lg shadow-red-900/20 flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-105"
         >
           <ExternalLink className="w-5 h-5" />
           Abrir Visualizador Inteligente
-        </label>
+        </button>
 
         <p className="mt-6 text-xs text-white/30 tracking-widest uppercase">
           Requiere suscripción B2B activa con fabricantes (Itaca, Caribe, Palo Rosa)
