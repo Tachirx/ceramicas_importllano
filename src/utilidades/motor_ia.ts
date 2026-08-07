@@ -36,7 +36,8 @@ class MotorIA {
       formData.append("coord_y", y_pct.toString());
 
       // 3. Consultar a nuestro Microservicio de IA
-      const respuestaServidor = await fetch("http://127.0.0.1:8000/segmentar", {
+      const API_URL = import.meta.env.VITE_API_IA_URL || "http://127.0.0.1:8000";
+      const respuestaServidor = await fetch(`${API_URL}/segmentar`, {
         method: "POST",
         body: formData,
       });
