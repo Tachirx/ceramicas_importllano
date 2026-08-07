@@ -37,6 +37,11 @@ export const App: React.FC = () => {
       if (pisos.length > 0) {
         setMaterialPiso(pisos[0]);
         setFormatoPiso(pisos[0].formato_predeterminado);
+        
+        if (paredes.length === 0) {
+          setMaterialPared(pisos[0]);
+          setFormatoPared(pisos[0].formato_predeterminado);
+        }
       }
       if (paredes.length > 0) {
         setMaterialPared(paredes[0]);
