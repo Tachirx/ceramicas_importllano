@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: servidor-ia-importllano
+    env: python
+    region: ohio
+    plan: free # Usa el plan gratuito de Render, puedes cambiar a 'starter' u otro plan si necesitas más RAM.
+    buildCommand: "cd servidor_ia && pip install -r requirements.txt"
+    startCommand: "cd servidor_ia && uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0 # Opcional, pero recomendado para mantener consistencia
