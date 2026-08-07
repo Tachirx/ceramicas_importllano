@@ -14,7 +14,10 @@
     "@react-three/postprocessing": "^3.0.4",
     "@supabase/supabase-js": "^2.112.2",
     "dotenv": "^17.4.2",
+    "duckduckgo-images-api": "^1.0.5",
+    "g-i-s": "^2.1.7",
     "lucide-react": "^0.378.0",
+    "puppeteer": "^25.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.164.1"

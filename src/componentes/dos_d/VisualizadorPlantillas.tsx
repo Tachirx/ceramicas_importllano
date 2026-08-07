@@ -70,6 +70,28 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
           </div>
         </div>
 
+        {/* Capa 3: Máscara recortada de la pared (Opcional) */}
+        {plantillaActiva.mascara_pared && plantillaActiva.transformacion_pared && materialPared && formatoPared && (
+          <div 
+            className="absolute inset-0 z-30 overflow-hidden"
+            style={{ clipPath: plantillaActiva.mascara_pared.puntos_clip_path }}
+          >
+            <div 
+              className="absolute inset-0 w-[200%] h-[200%] -left-[50%] -top-[50%] transition-all duration-700 ease-out"
+              style={{
+                backgroundImage: `url("${materialPared.url_textura}")`,
+                backgroundSize: `${(formatoPared.ancho_metros / 1) * 150}px ${(formatoPared.largo_metros / 1) * 150}px`,
+                backgroundRepeat: 'repeat',
+                transform: `perspective(${plantillaActiva.transformacion_pared.perspectiva_px}px) rotateY(${plantillaActiva.transformacion_pared.rotacion_x_grados}deg) scale(${plantillaActiva.transformacion_pared.escala}) translateY(${plantillaActiva.transformacion_pared.ajuste_y_porcentaje}%)`,
+                transformOrigin: plantillaActiva.transformacion_pared.origen_transformacion,
+                filter: 'contrast(1.05) brightness(0.95)'
+              }}
+            >
+              <div className="absolute inset-0 bg-black/10 pointer-events-none mix-blend-multiply"></div>
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );

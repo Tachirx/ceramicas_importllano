@@ -34,6 +34,16 @@ export const PLANTILLAS_BASE: PlantillaHabitacion[] = [
       escala: 1.8,
       origen_transformacion: 'top center',
       ajuste_y_porcentaje: 0
+    },
+    mascara_pared: {
+      puntos_clip_path: 'polygon(0% 0%, 25% 65%, 0% 100%)' // Pared izquierda aproximada
+    },
+    transformacion_pared: {
+      perspectiva_px: 800,
+      rotacion_x_grados: 45, // Usado como rotateY en el código
+      escala: 2.0,
+      origen_transformacion: 'center right',
+      ajuste_y_porcentaje: -10
     }
   },
   {
