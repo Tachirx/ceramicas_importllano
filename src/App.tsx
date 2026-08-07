@@ -108,7 +108,7 @@ export const App: React.FC = () => {
   }
 
   // Determinar si debemos mostrar el widget de Roomvo basado en las marcas con licencia
-  const marcasRoomvo = ['Ceramicas Caribe', 'Itaca', 'Palo Rosa'];
+  const marcasRoomvo = ['Ceramicas Caribe'];
   const pisoRequiereRoomvo = marcasRoomvo.includes(materialPiso.marca);
   const paredRequiereRoomvo = marcasRoomvo.includes(materialPared.marca);
   const mostrarRoomvo = pisoRequiereRoomvo || paredRequiereRoomvo;

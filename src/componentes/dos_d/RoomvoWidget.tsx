@@ -50,7 +50,7 @@ const RoomvoWidget: React.FC<RoomvoWidgetProps> = ({ materialPiso }) => {
         </button>
 
         <p className="mt-6 text-xs text-white/30 tracking-widest uppercase">
-          Requiere suscripción B2B activa con fabricantes (Itaca, Caribe, Palo Rosa)
+          REQUIERE SUSCRIPCIÓN B2B ACTIVA CON FABRICANTES (CARIBE)
         </p>
       </div>
     </div>
