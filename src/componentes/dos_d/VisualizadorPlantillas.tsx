@@ -31,6 +31,23 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
     return `url("${materialPiso.url_textura}")`;
   }, [materialPiso]);
 
+  // Mapeo de Renders IA Generativos Fotorrealistas (0ms latency, ArchViz Quality)
+  const renderIaFotorrealista = useMemo(() => {
+    const ambienteId = plantillaActiva.id.split('-')[0]; // 'sala', 'bano', 'cocina'
+    const materialId = materialPiso.id;
+    return `/renders_ia/${ambienteId}_${materialId}.jpg`;
+  }, [plantillaActiva.id, materialPiso.id]);
+
+  const [tieneRenderIa, setTieneRenderIa] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    // Comprobar si existe el render IA pre-calculado
+    const img = new Image();
+    img.src = renderIaFotorrealista;
+    img.onload = () => setTieneRenderIa(true);
+    img.onerror = () => setTieneRenderIa(false);
+  }, [renderIaFotorrealista]);
+
   return (
     <div className="w-full h-full min-h-[500px] md:min-h-[600px] relative rounded-2xl overflow-hidden bg-black shadow-2xl border border-zinc-800 flex items-center justify-center group">
       
@@ -42,18 +59,29 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
       {/* Indicador de IA Activa */}
       <div className="absolute top-4 left-4 z-50 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full flex items-center gap-2 shadow-xl">
         <Sparkles className="w-4 h-4 text-[#E51E25] animate-pulse" />
-        <span className="text-xs font-bold text-white tracking-widest uppercase">Motor IA Activo</span>
+        <span className="text-xs font-bold text-white tracking-widest uppercase">
+          {tieneRenderIa ? 'Motor IA Generativo 8K' : 'Motor IA Activo'}
+        </span>
       </div>
 
       {/* CONTENEDOR PRINCIPAL DEL RENDER */}
       <div className="relative w-full h-full max-w-[1200px] aspect-video">
         
-        {/* Capa 1: Imagen de fondo original de la plantilla */}
-        <img 
-          src={plantillaActiva.url_imagen_fondo} 
-          alt={plantillaActiva.nombre}
-          className="absolute inset-0 w-full h-full object-cover z-10"
-        />
+        {/* MODO 1: Render de IA Generativa Prompteable (Calidad ArchViz / Fotorrealismo Absoluto) */}
+        {tieneRenderIa ? (
+          <img 
+            src={renderIaFotorrealista} 
+            alt={`${materialPiso.nombre} en ${plantillaActiva.nombre}`}
+            className="absolute inset-0 w-full h-full object-cover z-20 transition-opacity duration-500"
+          />
+        ) : (
+          <>
+            {/* Capa 1: Imagen de fondo original de la plantilla */}
+            <img 
+              src={plantillaActiva.url_imagen_fondo} 
+              alt={plantillaActiva.nombre}
+              className="absolute inset-0 w-full h-full object-cover z-10"
+            />
 
         {/* Capa 2: Cerámica del piso en Modo Normal (Color Puro 100% Real) */}
         <div 
@@ -169,7 +197,8 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
             )}
           </>
         )}
-
+          </>
+        )}
       </div>
     </div>
   );

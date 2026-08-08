@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Cerámicas y Porcelanatos | ImportLlano</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ═══════════ PORTADA ═══════════ -->
+  <div class="portada">
+    <div class="portada-mosaico" id="portada-mosaico"></div>
+    <div class="portada-contenido">
+      <img src="logo.jpg" alt="ImportLlano" class="portada-logo" onerror="this.style.display='none'">
+      <h1>Catálogo</h1>
+      <p class="subtitulo">Cerámicas &amp; Porcelanatos</p>
+      <div class="barra-oro"></div>
+      <p class="ubicacion">ImportLlano · San Fernando de Apure</p>
+    </div>
+    <div class="portada-footer">
+      <span>Catálogo 2026</span>
+      <span>San Fernando de Apure, Venezuela</span>
+    </div>
+  </div>
+
+  <!-- ═══════════ CONTENIDO GENERADO POR JS ═══════════ -->
+  <div id="catalogo-contenido"></div>
+
+  <!-- ═══════════ CONTRAPORTADA ═══════════ -->
+  <div class="contraportada">
+    <img src="logo.jpg" alt="ImportLlano" style="width:110px;margin-bottom:2.5rem;filter:brightness(1.3);position:relative;z-index:1;" onerror="this.style.display='none'">
+    <h2>Visítanos</h2>
+    <div class="barra-oro-contra"></div>
+    <div class="contacto-info">
+      <strong>ImportLlano</strong><br>
+      San Fernando de Apure, Venezuela<br><br>
+      <strong>Horario</strong><br>
+      Lunes a Sábado<br>
+      ¡Te esperamos!
+    </div>
+    <div class="contraportada-footer">
+      ImportLlano &copy; 2026 · Precios en Bs. Referenciales
+    </div>
+  </div>
+
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <script src="datos.js"></script>
+  <script>
+    (function() {
+      const contenedor = document.getElementById('catalogo-contenido');
+
+      // Mapa de fabricantes → clase CSS
+      const fabricanteClass = {
+        'ITACA': 'itaca',
+        'Palo Rosa': 'palo-rosa',
+        'Caribe': 'caribe',
+        'Balgres': 'balgres',
+        'Carabobo': 'carabobo',
+        'Domosa': 'domosa'
+      };
+
+      const fabricanteColor = {
+        'ITACA': '#C4962A',
+        'Palo Rosa': '#C4717A',
+        'Caribe': '#3A7CA5',
+        'Balgres': '#4A8C5C',
+        'Carabobo': '#D4783B',
+        'Domosa': '#7B5EA7'
+      };
+
+      const fabricanteInicial = {
+        'ITACA': 'I',
+        'Palo Rosa': 'PR',
+        'Caribe': 'C',
+        'Balgres': 'B',
+        'Carabobo': 'CB',
+        'Domosa': 'D'
+      };
+
+      // Agrupar productos por fabricante
+      const grupos = {};
+      PRODUCTOS.forEach(p => {
+        if (!grupos[p.fabricante]) grupos[p.fabricante] = [];
+        grupos[p.fabricante].push(p);
+      });
+
+      // Orden deseado de fabricantes
+      const ordenFabricantes = ['ITACA', 'Palo Rosa', 'Carabobo', 'Domosa', 'Balgres', 'Caribe'];
+
+      let html = '';
+
+      ordenFabricantes.forEach(fab => {
+        const productos = grupos[fab];
+        if (!productos || productos.length === 0) return;
+
+        const cls = fabricanteClass[fab] || 'itaca';
+        const color = fabricanteColor[fab] || '#C4962A';
+        const inicial = fabricanteInicial[fab] || fab[0];
+
+        html += `
+        <div class="seccion-header">
+          <div class="marca-badge" style="background:${color}">${inicial}</div>
+          <div>
+            <h2>${fab}</h2>
+            <span class="productos-count">${productos.length} productos</span>
+          </div>
+        </div>
+        <div class="productos-grid">`;
+
+        productos.forEach(p => {
+          const fotoSrc = p.tieneFoto
+            ? 'imagenes/' + (p.fotoAlt || p.id) + '.jpg'
+            : null;
+
+          const tagCls = 'fabricante-tag tag-' + cls;
+          const phCls = 'ph-' + cls;
+
+          const precioCajaHtml = p.precioCaja !== null
+            ? `<span class="precio-numero">Ref ${p.precioCaja.toFixed(2)}</span>`
+            : `<span class="precio-numero sin-dato">Consultar</span>`;
+
+          const imagenHtml = fotoSrc
+            ? `<img src="${fotoSrc}" alt="${p.nombre}" class="ficha-imagen" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'ficha-placeholder ${phCls}\\'><span class=\\'icono\\'>📷</span><span class=\\'nombre-placeholder\\'>${p.nombre}</span><span class=\\'marca-placeholder\\'>${p.fabricante}</span></div>'">`
+            : `<div class="ficha-placeholder ${phCls}">
+                <span class="icono">📷</span>
+                <span class="nombre-placeholder">${p.nombre}</span>
+                <span class="marca-placeholder">${p.fabricante}</span>
+               </div>`;
+
+          html += `
+          <div class="ficha">
+            ${imagenHtml}
+            <div class="ficha-body">
+              <h4>${p.nombre}</h4>
+              <span class="${tagCls}">${p.fabricante}</span>
+              <div class="medidas">📏 ${p.medidas}</div>
+              <div class="especificaciones">
+                <span><span class="label">Caja:</span> <span class="value">${p.piezasPorCaja} pzas</span></span>
+                <span><span class="label">Cubre:</span> <span class="value">${p.cubreM2} m²</span></span>
+                <span><span class="label">m²:</span> <span class="value">Ref ${p.precioM2.toFixed(2)}</span></span>
+              </div>
+              <div class="precio-caja">
+                <span class="precio-label">Precio por caja</span>
+                ${precioCajaHtml}
+              </div>
+              <div class="precio-m2">Ref ${p.precioM2.toFixed(2)} / m²</div>
+            </div>
+          </div>`;
+        });
+
+        html += '</div>';
+      });
+
+      contenedor.innerHTML = html;
+
+      // Mosaico de portada: grid 7×5 con texturas reales
+      (function() {
+        const mosaico = document.getElementById('portada-mosaico');
+        if (!mosaico) return;
+        const conFoto = PRODUCTOS.filter(p => p.tieneFoto);
+        if (conFoto.length === 0) return;
+        // Tomamos hasta 35 aleatorias para 7×5
+        const shuffled = conFoto.sort(() => Math.random() - 0.5).slice(0, 35);
+        shuffled.forEach(p => {
+          const img = document.createElement('img');
+          img.src = 'imagenes/' + (p.fotoAlt || p.id) + '.jpg';
+          img.alt = p.nombre;
+          img.loading = 'lazy';
+          mosaico.appendChild(img);
+        });
+      })();
+    })();
+  </script>
+
+</body>
+</html>
