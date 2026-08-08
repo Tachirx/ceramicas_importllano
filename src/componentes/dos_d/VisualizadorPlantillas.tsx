@@ -34,9 +34,13 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
   // Mapeo de Renders IA Generativos Fotorrealistas (0ms latency, ArchViz Quality)
   const renderIaFotorrealista = useMemo(() => {
     const ambienteId = plantillaActiva.id.split('-')[0]; // 'sala', 'bano', 'cocina'
-    const materialId = materialPiso.id;
-    return `/renders_ia/${ambienteId}_${materialId}.jpg`;
-  }, [plantillaActiva.id, materialPiso.id]);
+    const pisoId = materialPiso.id;
+    const paredId = materialPared?.id;
+    if (paredId) {
+      return `/renders_ia/${ambienteId}_piso-${pisoId}_pared-${paredId}.jpg`;
+    }
+    return `/renders_ia/${ambienteId}_${pisoId}.jpg`;
+  }, [plantillaActiva.id, materialPiso.id, materialPared?.id]);
 
   const [tieneRenderIa, setTieneRenderIa] = React.useState<boolean>(true);
 
