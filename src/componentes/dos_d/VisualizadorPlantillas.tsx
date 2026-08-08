@@ -85,7 +85,7 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
               transform: `perspective(${plantillaActiva.transformacion_piso.perspectiva_px}px) rotateX(${plantillaActiva.transformacion_piso.rotacion_x_grados}deg) translateY(${plantillaActiva.transformacion_piso.ajuste_y_porcentaje}%)`,
               transformOrigin: plantillaActiva.transformacion_piso.origen_transformacion,
               filter: 'contrast(1.1) brightness(0.9) drop-shadow(0 0 10px rgba(0,0,0,0.5))',
-              imageRendering: 'high-quality'
+              imageRendering: 'high-quality' as any
             }}
           >
             {/* Overlay sutil para darle realismo a la iluminación (sombras en los bordes) */}
@@ -123,7 +123,7 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
                 transform: `perspective(${plantillaActiva.transformacion_pared.perspectiva_px}px) rotateY(${plantillaActiva.transformacion_pared.rotacion_x_grados}deg) translateY(${plantillaActiva.transformacion_pared.ajuste_y_porcentaje}%)`,
                 transformOrigin: plantillaActiva.transformacion_pared.origen_transformacion,
                 filter: 'contrast(1.05) brightness(0.95)',
-                imageRendering: 'high-quality'
+                imageRendering: 'high-quality' as any
               }}
             >
               <div className="absolute inset-0 bg-black/10 pointer-events-none mix-blend-multiply"></div>
