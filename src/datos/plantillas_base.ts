@@ -8,8 +8,8 @@ export const PLANTILLAS_BASE: PlantillaHabitacion[] = [
     url_imagen_fondo: '/plantillas/sala.jpg',
     url_miniatura: '/plantillas/sala.jpg',
     mascara_piso: {
-      // Un trapecio ajustado para la parte inferior, evitando tapar los muebles principales
-      puntos_clip_path: 'polygon(0% 100%, 100% 100%, 90% 85%, 10% 85%)'
+      // Un trapecio que simula el piso en la parte inferior de la imagen
+      puntos_clip_path: 'polygon(0% 100%, 100% 100%, 85% 55%, 15% 55%)'
     },
     transformacion_piso: {
       perspectiva_px: 800,
@@ -17,16 +17,6 @@ export const PLANTILLAS_BASE: PlantillaHabitacion[] = [
       escala: 2.5,
       origen_transformacion: 'top center',
       ajuste_y_porcentaje: -10
-    },
-    mascara_pared: {
-      puntos_clip_path: 'polygon(75% 0%, 100% 0%, 100% 85%, 75% 55%)' // Pared derecha (ventana)
-    },
-    transformacion_pared: {
-      perspectiva_px: 800,
-      rotacion_x_grados: -30,
-      escala: 1.5,
-      origen_transformacion: 'center left',
-      ajuste_y_porcentaje: 0
     }
   },
   {

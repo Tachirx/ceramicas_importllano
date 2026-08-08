@@ -23,6 +23,10 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
   const escalaBaseX = (formatoPiso.ancho_metros / 1) * 100; 
   const escalaBaseY = (formatoPiso.largo_metros / 1) * 100;
 
+  const escalaPiso = plantillaActiva.transformacion_piso.escala || 1;
+  const anchoPisoPct = 200 * escalaPiso;
+  const offsetPisoPct = (anchoPisoPct - 100) / 2;
+
   const texturaFondo = useMemo(() => {
     return `url("${materialPiso.url_textura}")`;
   }, [materialPiso]);
@@ -58,14 +62,19 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
         >
           {/* El plano infinito del piso */}
           <div 
-            className="absolute inset-0 w-[200%] h-[200%] -left-[50%] -top-[50%] transition-all duration-700 ease-out"
+            className="absolute inset-0 transition-all duration-700 ease-out"
             style={{
+              width: `${anchoPisoPct}%`,
+              height: `${anchoPisoPct}%`,
+              left: `-${offsetPisoPct}%`,
+              top: `-${offsetPisoPct}%`,
               backgroundImage: texturaFondo,
-              backgroundSize: `${escalaBaseX}px ${escalaBaseY}px`,
+              backgroundSize: `${escalaBaseX * escalaPiso}px ${escalaBaseY * escalaPiso}px`,
               backgroundRepeat: 'repeat',
-              transform: `perspective(${plantillaActiva.transformacion_piso.perspectiva_px}px) rotateX(${plantillaActiva.transformacion_piso.rotacion_x_grados}deg) scale(${plantillaActiva.transformacion_piso.escala}) translateY(${plantillaActiva.transformacion_piso.ajuste_y_porcentaje}%)`,
+              transform: `perspective(${plantillaActiva.transformacion_piso.perspectiva_px}px) rotateX(${plantillaActiva.transformacion_piso.rotacion_x_grados}deg) translateY(${plantillaActiva.transformacion_piso.ajuste_y_porcentaje}%)`,
               transformOrigin: plantillaActiva.transformacion_piso.origen_transformacion,
-              filter: 'contrast(1.1) brightness(0.9) drop-shadow(0 0 10px rgba(0,0,0,0.5))'
+              filter: 'contrast(1.1) brightness(0.9) drop-shadow(0 0 10px rgba(0,0,0,0.5))',
+              imageRendering: 'high-quality'
             }}
           >
             {/* Overlay sutil para darle realismo a la iluminación (sombras en los bordes) */}
@@ -80,14 +89,19 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
             style={{ clipPath: plantillaActiva.mascara_pared.puntos_clip_path }}
           >
             <div 
-              className="absolute inset-0 w-[200%] h-[200%] -left-[50%] -top-[50%] transition-all duration-700 ease-out"
+              className="absolute inset-0 transition-all duration-700 ease-out"
               style={{
+                width: `${200 * (plantillaActiva.transformacion_pared.escala || 1)}%`,
+                height: `${200 * (plantillaActiva.transformacion_pared.escala || 1)}%`,
+                left: `-${(200 * (plantillaActiva.transformacion_pared.escala || 1) - 100) / 2}%`,
+                top: `-${(200 * (plantillaActiva.transformacion_pared.escala || 1) - 100) / 2}%`,
                 backgroundImage: `url("${materialPared.url_textura}")`,
-                backgroundSize: `${(formatoPared.ancho_metros / 1) * 100}px ${(formatoPared.largo_metros / 1) * 100}px`,
+                backgroundSize: `${(formatoPared.ancho_metros / 1) * 100 * (plantillaActiva.transformacion_pared.escala || 1)}px ${(formatoPared.largo_metros / 1) * 100 * (plantillaActiva.transformacion_pared.escala || 1)}px`,
                 backgroundRepeat: 'repeat',
-                transform: `perspective(${plantillaActiva.transformacion_pared.perspectiva_px}px) rotateY(${plantillaActiva.transformacion_pared.rotacion_x_grados}deg) scale(${plantillaActiva.transformacion_pared.escala}) translateY(${plantillaActiva.transformacion_pared.ajuste_y_porcentaje}%)`,
+                transform: `perspective(${plantillaActiva.transformacion_pared.perspectiva_px}px) rotateY(${plantillaActiva.transformacion_pared.rotacion_x_grados}deg) translateY(${plantillaActiva.transformacion_pared.ajuste_y_porcentaje}%)`,
                 transformOrigin: plantillaActiva.transformacion_pared.origen_transformacion,
-                filter: 'contrast(1.05) brightness(0.95)'
+                filter: 'contrast(1.05) brightness(0.95)',
+                imageRendering: 'high-quality'
               }}
             >
               <div className="absolute inset-0 bg-black/10 pointer-events-none mix-blend-multiply"></div>
