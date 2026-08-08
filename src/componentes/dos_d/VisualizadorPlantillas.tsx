@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { FormatoPalmeta, MaterialCeramico } from '../../tipos/materiales';
 import { PlantillaHabitacion } from '../../tipos/plantillas';
 import { Maximize2, Sparkles } from 'lucide-react';
+import { solicitarRenderIaEnTiempoReal } from '../../servicios/generadorIa';
 
 interface PropiedadesVisualizador {
   plantillaActiva: PlantillaHabitacion;
@@ -19,7 +20,6 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
   formatoPared
 }) => {
   // Cálculo de escalas base para simular el tamaño de la palmeta en el espacio 3D
-  // Reducimos el factor a 100 para que el mosaico sea más denso (alta resolución)
   const escalaBaseX = (formatoPiso.ancho_metros / 1) * 100; 
   const escalaBaseY = (formatoPiso.largo_metros / 1) * 100;
 
@@ -31,9 +31,9 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
     return `url("${materialPiso.url_textura}")`;
   }, [materialPiso]);
 
-  // Mapeo de Renders IA Generativos Fotorrealistas (0ms latency, ArchViz Quality)
-  const renderIaFotorrealista = useMemo(() => {
-    const ambienteId = plantillaActiva.id.split('-')[0]; // 'sala', 'bano', 'cocina'
+  // Ruta del Render Pre-calculado de IA
+  const renderIaPrecalculado = useMemo(() => {
+    const ambienteId = plantillaActiva.id.split('-')[0];
     const pisoId = materialPiso.id;
     const paredId = materialPared?.id;
     if (paredId) {
@@ -42,20 +42,56 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
     return `/renders_ia/${ambienteId}_${pisoId}.jpg`;
   }, [plantillaActiva.id, materialPiso.id, materialPared?.id]);
 
-  const [tieneRenderIa, setTieneRenderIa] = React.useState<boolean>(true);
+  const [urlRenderActivo, setUrlRenderActivo] = React.useState<string>(renderIaPrecalculado);
+  const [generandoEnVivo, setGenerandoEnVivo] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    // Comprobar si existe el render IA pre-calculado
+    let cancelado = false;
+    // Comprobar primero si existe el render pre-calculado en caché local
     const img = new Image();
-    img.src = renderIaFotorrealista;
-    img.onload = () => setTieneRenderIa(true);
-    img.onerror = () => setTieneRenderIa(false);
-  }, [renderIaFotorrealista]);
+    img.src = renderIaPrecalculado;
+    
+    img.onload = () => {
+      if (!cancelado) {
+        setUrlRenderActivo(renderIaPrecalculado);
+        setGenerandoEnVivo(false);
+      }
+    };
+
+    img.onerror = () => {
+      if (!cancelado) {
+        // Si no está pre-renderizado, invocamos la IA Generativa en tiempo real vía Prompt API
+        setGenerandoEnVivo(true);
+        solicitarRenderIaEnTiempoReal({
+          ambiente: plantillaActiva.nombre,
+          nombrePiso: materialPiso.nombre,
+          detallesPiso: `${formatoPiso.etiqueta}, marca ${materialPiso.marca}`,
+          nombrePared: materialPared?.nombre,
+          detallesPared: materialPared ? `${formatoPared?.etiqueta || ''}, marca ${materialPared.marca}` : undefined
+        })
+          .then((urlDinamica) => {
+            if (!cancelado) {
+              setUrlRenderActivo(urlDinamica);
+              setGenerandoEnVivo(false);
+            }
+          })
+          .catch(() => {
+            if (!cancelado) {
+              setGenerandoEnVivo(false);
+            }
+          });
+      }
+    };
+
+    return () => {
+      cancelado = true;
+    };
+  }, [renderIaPrecalculado, plantillaActiva, materialPiso, formatoPiso, materialPared, formatoPared]);
 
   return (
     <div className="w-full h-full min-h-[500px] md:min-h-[600px] relative rounded-2xl overflow-hidden bg-black shadow-2xl border border-zinc-800 flex items-center justify-center group">
       
-      {/* Botón flotante para expandir (decorativo por ahora) */}
+      {/* Botón flotante para expandir */}
       <button className="absolute top-4 right-4 z-50 bg-black/50 hover:bg-[#E51E25] text-white p-2.5 rounded-xl backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg">
         <Maximize2 className="w-5 h-5" />
       </button>
@@ -64,28 +100,30 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
       <div className="absolute top-4 left-4 z-50 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full flex items-center gap-2 shadow-xl">
         <Sparkles className="w-4 h-4 text-[#E51E25] animate-pulse" />
         <span className="text-xs font-bold text-white tracking-widest uppercase">
-          {tieneRenderIa ? 'Motor IA Generativo 8K' : 'Motor IA Activo'}
+          {generandoEnVivo ? 'Generando Render IA en vivo...' : 'Motor IA Generativo 8K'}
         </span>
       </div>
+
+      {/* Pantalla de Carga de IA en Tiempo Real */}
+      {generandoEnVivo && (
+        <div className="absolute inset-0 z-40 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center gap-4 text-white p-6 text-center animate-fade-in">
+          <Sparkles className="w-12 h-12 text-[#E51E25] animate-bounce" />
+          <h3 className="text-xl font-bold tracking-tight">Creando Render IA en Tiempo Real...</h3>
+          <p className="text-sm text-zinc-400 max-w-md">
+            La Inteligencia Artificial está procesando la combinación de <span className="text-white font-semibold">{materialPiso.nombre}</span> {materialPared ? `y ${materialPared.nombre}` : ''} con iluminación fotográfica 8K.
+          </p>
+        </div>
+      )}
 
       {/* CONTENEDOR PRINCIPAL DEL RENDER */}
       <div className="relative w-full h-full max-w-[1200px] aspect-video">
         
         {/* MODO 1: Render de IA Generativa Prompteable (Calidad ArchViz / Fotorrealismo Absoluto) */}
-        {tieneRenderIa ? (
-          <img 
-            src={renderIaFotorrealista} 
-            alt={`${materialPiso.nombre} en ${plantillaActiva.nombre}`}
-            className="absolute inset-0 w-full h-full object-cover z-20 transition-opacity duration-500"
-          />
-        ) : (
-          <>
-            {/* Capa 1: Imagen de fondo original de la plantilla */}
-            <img 
-              src={plantillaActiva.url_imagen_fondo} 
-              alt={plantillaActiva.nombre}
-              className="absolute inset-0 w-full h-full object-cover z-10"
-            />
+        <img 
+          src={urlRenderActivo} 
+          alt={`${materialPiso.nombre} en ${plantillaActiva.nombre}`}
+          className="absolute inset-0 w-full h-full object-cover z-20 transition-opacity duration-500"
+        />
 
         {/* Capa 2: Cerámica del piso en Modo Normal (Color Puro 100% Real) */}
         <div 
@@ -199,8 +237,6 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
                 />
               </div>
             )}
-          </>
-        )}
           </>
         )}
       </div>
