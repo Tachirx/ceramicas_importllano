@@ -14,7 +14,9 @@ interface PropiedadesVisualizador {
 export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
   plantillaActiva,
   materialPiso,
-  formatoPiso
+  formatoPiso,
+  materialPared,
+  formatoPared
 }) => {
   // Cálculo de escalas base para simular el tamaño de la palmeta en el espacio 3D
   const escalaBaseX = (formatoPiso.ancho_metros / 1) * 150; // Ajuste arbitrario para que se vea proporcionado
