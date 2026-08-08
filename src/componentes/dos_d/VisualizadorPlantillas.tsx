@@ -55,9 +55,9 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
           className="absolute inset-0 w-full h-full object-cover z-10"
         />
 
-        {/* Capa 2: Máscara recortada del piso con proyección 3D */}
+        {/* Capa 2: Cerámica del piso en Modo Normal (Color Puro 100% Real) */}
         <div 
-          className="absolute inset-0 z-20 overflow-hidden mix-blend-multiply"
+          className="absolute inset-0 z-20 overflow-hidden"
           style={{ 
             ...(plantillaActiva.url_mascara_piso ? {
               WebkitMaskImage: `url('${plantillaActiva.url_mascara_piso}')`,
@@ -84,51 +84,90 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
               backgroundRepeat: 'repeat',
               transform: `perspective(${plantillaActiva.transformacion_piso.perspectiva_px}px) rotateX(${plantillaActiva.transformacion_piso.rotacion_x_grados}deg) translateY(${plantillaActiva.transformacion_piso.ajuste_y_porcentaje}%)`,
               transformOrigin: plantillaActiva.transformacion_piso.origen_transformacion,
-              filter: 'contrast(1.1) brightness(0.9) drop-shadow(0 0 10px rgba(0,0,0,0.5))',
+              filter: 'contrast(1.05) brightness(1.02)',
               imageRendering: 'high-quality' as any
             }}
-          >
-            {/* Overlay sutil para darle realismo a la iluminación (sombras en los bordes) */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none mix-blend-overlay"></div>
-          </div>
+          />
         </div>
 
-        {/* Capa 3: Máscara recortada de la pared (Opcional) */}
-        {(plantillaActiva.url_mascara_pared || plantillaActiva.mascara_pared) && plantillaActiva.transformacion_pared && materialPared && formatoPared && (
+        {/* Capa 2B: Sombras fotográficas reales sobre la cerámica */}
+        {plantillaActiva.url_mascara_piso && (
           <div 
-            className="absolute inset-0 z-30 overflow-hidden mix-blend-multiply"
+            className="absolute inset-0 z-25 overflow-hidden mix-blend-multiply opacity-40 pointer-events-none"
             style={{ 
-              ...(plantillaActiva.url_mascara_pared ? {
-                WebkitMaskImage: `url('${plantillaActiva.url_mascara_pared}')`,
-                WebkitMaskSize: 'cover',
-                WebkitMaskPosition: 'center',
-                maskImage: `url('${plantillaActiva.url_mascara_pared}')`,
-                maskSize: 'cover',
-                maskPosition: 'center',
-              } : {
-                clipPath: plantillaActiva.mascara_pared?.puntos_clip_path
-              })
+              WebkitMaskImage: `url('${plantillaActiva.url_mascara_piso}')`,
+              WebkitMaskSize: 'cover',
+              WebkitMaskPosition: 'center',
+              maskImage: `url('${plantillaActiva.url_mascara_piso}')`,
+              maskSize: 'cover',
+              maskPosition: 'center',
             }}
           >
+            <img 
+              src={plantillaActiva.url_imagen_fondo} 
+              alt="Sombras piso"
+              className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-150 brightness-110"
+            />
+          </div>
+        )}
+
+        {/* Capa 3: Cerámica de la pared en Modo Normal (Opcional) */}
+        {(plantillaActiva.url_mascara_pared || plantillaActiva.mascara_pared) && plantillaActiva.transformacion_pared && materialPared && formatoPared && (
+          <>
             <div 
-              className="absolute inset-0 transition-all duration-700 ease-out"
-              style={{
-                width: `${200 * (plantillaActiva.transformacion_pared.escala || 1)}%`,
-                height: `${200 * (plantillaActiva.transformacion_pared.escala || 1)}%`,
-                left: `-${(200 * (plantillaActiva.transformacion_pared.escala || 1) - 100) / 2}%`,
-                top: `-${(200 * (plantillaActiva.transformacion_pared.escala || 1) - 100) / 2}%`,
-                backgroundImage: `url("${materialPared.url_textura}")`,
-                backgroundSize: `${(formatoPared.ancho_metros / 1) * 100 * (plantillaActiva.transformacion_pared.escala || 1)}px ${(formatoPared.largo_metros / 1) * 100 * (plantillaActiva.transformacion_pared.escala || 1)}px`,
-                backgroundRepeat: 'repeat',
-                transform: `perspective(${plantillaActiva.transformacion_pared.perspectiva_px}px) rotateY(${plantillaActiva.transformacion_pared.rotacion_x_grados}deg) translateY(${plantillaActiva.transformacion_pared.ajuste_y_porcentaje}%)`,
-                transformOrigin: plantillaActiva.transformacion_pared.origen_transformacion,
-                filter: 'contrast(1.05) brightness(0.95)',
-                imageRendering: 'high-quality' as any
+              className="absolute inset-0 z-30 overflow-hidden"
+              style={{ 
+                ...(plantillaActiva.url_mascara_pared ? {
+                  WebkitMaskImage: `url('${plantillaActiva.url_mascara_pared}')`,
+                  WebkitMaskSize: 'cover',
+                  WebkitMaskPosition: 'center',
+                  maskImage: `url('${plantillaActiva.url_mascara_pared}')`,
+                  maskSize: 'cover',
+                  maskPosition: 'center',
+                } : {
+                  clipPath: plantillaActiva.mascara_pared?.puntos_clip_path
+                })
               }}
             >
-              <div className="absolute inset-0 bg-black/10 pointer-events-none mix-blend-multiply"></div>
+              <div 
+                className="absolute inset-0 transition-all duration-700 ease-out"
+                style={{
+                  width: `${200 * (plantillaActiva.transformacion_pared.escala || 1)}%`,
+                  height: `${200 * (plantillaActiva.transformacion_pared.escala || 1)}%`,
+                  left: `-${(200 * (plantillaActiva.transformacion_pared.escala || 1) - 100) / 2}%`,
+                  top: `-${(200 * (plantillaActiva.transformacion_pared.escala || 1) - 100) / 2}%`,
+                  backgroundImage: `url("${materialPared.url_textura}")`,
+                  backgroundSize: `${(formatoPared.ancho_metros / 1) * 100 * (plantillaActiva.transformacion_pared.escala || 1)}px ${(formatoPared.largo_metros / 1) * 100 * (plantillaActiva.transformacion_pared.escala || 1)}px`,
+                  backgroundRepeat: 'repeat',
+                  transform: `perspective(${plantillaActiva.transformacion_pared.perspectiva_px}px) rotateY(${plantillaActiva.transformacion_pared.rotacion_x_grados}deg) translateY(${plantillaActiva.transformacion_pared.ajuste_y_porcentaje}%)`,
+                  transformOrigin: plantillaActiva.transformacion_pared.origen_transformacion,
+                  filter: 'contrast(1.05) brightness(1.02)',
+                  imageRendering: 'high-quality' as any
+                }}
+              />
             </div>
-          </div>
+
+            {/* Capa 3B: Sombras fotográficas sobre la pared */}
+            {plantillaActiva.url_mascara_pared && (
+              <div 
+                className="absolute inset-0 z-35 overflow-hidden mix-blend-multiply opacity-40 pointer-events-none"
+                style={{ 
+                  WebkitMaskImage: `url('${plantillaActiva.url_mascara_pared}')`,
+                  WebkitMaskSize: 'cover',
+                  WebkitMaskPosition: 'center',
+                  maskImage: `url('${plantillaActiva.url_mascara_pared}')`,
+                  maskSize: 'cover',
+                  maskPosition: 'center',
+                }}
+              >
+                <img 
+                  src={plantillaActiva.url_imagen_fondo} 
+                  alt="Sombras pared"
+                  className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-150 brightness-110"
+                />
+              </div>
+            )}
+          </>
         )}
 
       </div>
