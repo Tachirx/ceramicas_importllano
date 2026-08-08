@@ -19,8 +19,9 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
   formatoPared
 }) => {
   // Cálculo de escalas base para simular el tamaño de la palmeta en el espacio 3D
-  const escalaBaseX = (formatoPiso.ancho_metros / 1) * 150; // Ajuste arbitrario para que se vea proporcionado
-  const escalaBaseY = (formatoPiso.largo_metros / 1) * 150;
+  // Reducimos el factor a 100 para que el mosaico sea más denso (alta resolución)
+  const escalaBaseX = (formatoPiso.ancho_metros / 1) * 100; 
+  const escalaBaseY = (formatoPiso.largo_metros / 1) * 100;
 
   const texturaFondo = useMemo(() => {
     return `url("${materialPiso.url_textura}")`;
@@ -52,7 +53,7 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
 
         {/* Capa 2: Máscara recortada del piso con proyección 3D */}
         <div 
-          className="absolute inset-0 z-20 overflow-hidden"
+          className="absolute inset-0 z-20 overflow-hidden mix-blend-multiply"
           style={{ clipPath: plantillaActiva.mascara_piso.puntos_clip_path }}
         >
           {/* El plano infinito del piso */}
@@ -75,14 +76,14 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
         {/* Capa 3: Máscara recortada de la pared (Opcional) */}
         {plantillaActiva.mascara_pared && plantillaActiva.transformacion_pared && materialPared && formatoPared && (
           <div 
-            className="absolute inset-0 z-30 overflow-hidden"
+            className="absolute inset-0 z-30 overflow-hidden mix-blend-multiply"
             style={{ clipPath: plantillaActiva.mascara_pared.puntos_clip_path }}
           >
             <div 
               className="absolute inset-0 w-[200%] h-[200%] -left-[50%] -top-[50%] transition-all duration-700 ease-out"
               style={{
                 backgroundImage: `url("${materialPared.url_textura}")`,
-                backgroundSize: `${(formatoPared.ancho_metros / 1) * 150}px ${(formatoPared.largo_metros / 1) * 150}px`,
+                backgroundSize: `${(formatoPared.ancho_metros / 1) * 100}px ${(formatoPared.largo_metros / 1) * 100}px`,
                 backgroundRepeat: 'repeat',
                 transform: `perspective(${plantillaActiva.transformacion_pared.perspectiva_px}px) rotateY(${plantillaActiva.transformacion_pared.rotacion_x_grados}deg) scale(${plantillaActiva.transformacion_pared.escala}) translateY(${plantillaActiva.transformacion_pared.ajuste_y_porcentaje}%)`,
                 transformOrigin: plantillaActiva.transformacion_pared.origen_transformacion,
