@@ -8,7 +8,7 @@ import {
 } from './tipos/materiales';
 import { calcularCotizacionCompleta } from './utilidades/calculador_cotizacion';
 import { NavegacionEncabezado } from './componentes/interfaz/NavegacionEncabezado';
-import RoomvoWidget from './componentes/dos_d/RoomvoWidget';
+
 import { VisualizadorPlantillas } from './componentes/dos_d/VisualizadorPlantillas';
 import { PanelCatalogo } from './componentes/interfaz/PanelCatalogo';
 import { PanelConfiguracionHabitacion } from './componentes/interfaz/PanelConfiguracionHabitacion';
@@ -109,14 +109,6 @@ export const App: React.FC = () => {
     return null; 
   }
 
-  // Determinar si debemos mostrar el widget de Roomvo basado en las marcas con licencia
-  const marcasRoomvo = ['Ceramicas Caribe'];
-  const pisoRequiereRoomvo = marcasRoomvo.includes(materialPiso.marca);
-  const paredRequiereRoomvo = marcasRoomvo.includes(materialPared.marca);
-  const mostrarRoomvo = pisoRequiereRoomvo || paredRequiereRoomvo;
-  // Pasamos el material que originó la activación de Roomvo
-  const materialParaRoomvo = pisoRequiereRoomvo ? materialPiso : materialPared;
-
   return (
     <div className="min-h-screen bg-white text-black flex flex-col font-['Outfit',sans-serif] selection:bg-red-600 selection:text-white">
       {/* Encabezado Principal Importllano */}
@@ -126,17 +118,13 @@ export const App: React.FC = () => {
       <main className="flex-1 p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-[1750px] w-full mx-auto">
         {/* COLUMNA IZQUIERDA: Visualizador Inteligencia Artificial */}
         <section className="lg:col-span-7 xl:col-span-8 flex flex-col gap-5">
-          {mostrarRoomvo ? (
-            <RoomvoWidget materialPiso={materialParaRoomvo} />
-          ) : (
-            <VisualizadorPlantillas 
-              plantillaActiva={plantillaActiva}
-              materialPiso={materialPiso}
-              formatoPiso={formatoPiso}
-              materialPared={materialPared}
-              formatoPared={formatoPared}
-            />
-          )}
+          <VisualizadorPlantillas 
+            plantillaActiva={plantillaActiva}
+            materialPiso={materialPiso}
+            formatoPiso={formatoPiso}
+            materialPared={materialPared}
+            formatoPared={formatoPared}
+          />
           <PanelCotizacion
             cotizacion={cotizacionTotal}
             material_piso={materialPiso}
