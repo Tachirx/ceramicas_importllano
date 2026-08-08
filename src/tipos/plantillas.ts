@@ -17,8 +17,15 @@ export interface PlantillaHabitacion {
   descripcion: string;
   url_imagen_fondo: string;
   url_miniatura: string;
-  // Parámetros para proyectar la cerámica del piso
-  mascara_piso: PoligonoMascara;
+  
+  // Archivos PNG de máscaras de recorte generados por IA
+  url_mascara_piso?: string;
+  url_mascara_pared?: string;
+
+  // Ya no usaremos mascara_piso con clip-path (obsoleto)
+  mascara_piso?: {
+    puntos_clip_path: string;
+  };
   transformacion_piso: Transformacion3D;
   // Parámetros para proyectar la cerámica de la pared (opcional)
   mascara_pared?: PoligonoMascara;

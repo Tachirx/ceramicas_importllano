@@ -58,7 +58,18 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
         {/* Capa 2: Máscara recortada del piso con proyección 3D */}
         <div 
           className="absolute inset-0 z-20 overflow-hidden mix-blend-multiply"
-          style={{ clipPath: plantillaActiva.mascara_piso.puntos_clip_path }}
+          style={{ 
+            ...(plantillaActiva.url_mascara_piso ? {
+              WebkitMaskImage: `url('${plantillaActiva.url_mascara_piso}')`,
+              WebkitMaskSize: 'cover',
+              WebkitMaskPosition: 'center',
+              maskImage: `url('${plantillaActiva.url_mascara_piso}')`,
+              maskSize: 'cover',
+              maskPosition: 'center',
+            } : {
+              clipPath: plantillaActiva.mascara_piso?.puntos_clip_path
+            })
+          }}
         >
           {/* El plano infinito del piso */}
           <div 
@@ -83,10 +94,21 @@ export const VisualizadorPlantillas: React.FC<PropiedadesVisualizador> = ({
         </div>
 
         {/* Capa 3: Máscara recortada de la pared (Opcional) */}
-        {plantillaActiva.mascara_pared && plantillaActiva.transformacion_pared && materialPared && formatoPared && (
+        {(plantillaActiva.url_mascara_pared || plantillaActiva.mascara_pared) && plantillaActiva.transformacion_pared && materialPared && formatoPared && (
           <div 
             className="absolute inset-0 z-30 overflow-hidden mix-blend-multiply"
-            style={{ clipPath: plantillaActiva.mascara_pared.puntos_clip_path }}
+            style={{ 
+              ...(plantillaActiva.url_mascara_pared ? {
+                WebkitMaskImage: `url('${plantillaActiva.url_mascara_pared}')`,
+                WebkitMaskSize: 'cover',
+                WebkitMaskPosition: 'center',
+                maskImage: `url('${plantillaActiva.url_mascara_pared}')`,
+                maskSize: 'cover',
+                maskPosition: 'center',
+              } : {
+                clipPath: plantillaActiva.mascara_pared?.puntos_clip_path
+              })
+            }}
           >
             <div 
               className="absolute inset-0 transition-all duration-700 ease-out"

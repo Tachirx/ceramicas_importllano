@@ -7,6 +7,8 @@ export const PLANTILLAS_BASE: PlantillaHabitacion[] = [
     descripcion: 'Ambiente amplio y luminoso, ideal para porcelanatos de gran formato.',
     url_imagen_fondo: '/plantillas/sala.jpg',
     url_miniatura: '/plantillas/sala.jpg',
+    url_mascara_piso: '/plantillas/sala-mask-piso.png',
+    url_mascara_pared: '/plantillas/sala-mask-pared.png',
     mascara_piso: {
       // Un trapecio que simula el piso en la parte inferior de la imagen
       puntos_clip_path: 'polygon(0% 100%, 100% 100%, 85% 55%, 15% 55%)'
@@ -25,6 +27,8 @@ export const PLANTILLAS_BASE: PlantillaHabitacion[] = [
     descripcion: 'Espacio íntimo perfecto para texturas limpias y cerámicas detalladas.',
     url_imagen_fondo: '/plantillas/bano.jpg',
     url_miniatura: '/plantillas/bano.jpg',
+    url_mascara_piso: '/plantillas/bano-mask-piso.png',
+    url_mascara_pared: '/plantillas/bano-mask-pared.png',
     mascara_piso: {
       puntos_clip_path: 'polygon(0% 100%, 100% 100%, 75% 65%, 25% 65%)'
     },
@@ -52,6 +56,8 @@ export const PLANTILLAS_BASE: PlantillaHabitacion[] = [
     descripcion: 'Diseño pulcro que resalta cerámicas de colores neutros y maderas.',
     url_imagen_fondo: '/plantillas/cocina.jpg',
     url_miniatura: '/plantillas/cocina.jpg',
+    url_mascara_piso: '/plantillas/cocina-mask-piso.png',
+    url_mascara_pared: '/plantillas/cocina-mask-pared.png',
     mascara_piso: {
       puntos_clip_path: 'polygon(0% 100%, 100% 100%, 80% 80%, 20% 80%)'
     },
